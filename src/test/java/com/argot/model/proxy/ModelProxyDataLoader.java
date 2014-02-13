@@ -1,5 +1,6 @@
 package com.argot.model.proxy;
 
+import com.argot.TypeElement;
 import com.argot.TypeException;
 import com.argot.TypeLibrary;
 import com.argot.TypeLibraryLoader;
@@ -31,18 +32,21 @@ implements TypeLibraryLoader
         final ModelClassLoader loader = new ModelClassLoader(library);
         final int id = library.register( new DictionaryName(MetaName.parseName(library,MixedData.TYPENAME)), new MetaIdentity() );
 
-        library.register(
-                new DictionaryDefinition(id, MetaName.parseName(library,MixedData.TYPENAME), MetaVersion.parseVersion("1.0")),
-                new MetaSequence(
+        final TypeElement structure = new MetaSequence(
                     new MetaExpression[]{
                         new MetaTag( "short", new MetaReference( library.getTypeId("int16"))),
                         new MetaTag( "byte", new MetaReference( library.getTypeId("int8"))),
                         new MetaTag( "text", new MetaReference( library.getTypeId("u8utf8")))
                     }
-                ),
+                );
+        final int newId = library.register(
+                new DictionaryDefinition(id, MetaName.parseName(library,MixedData.TYPENAME), MetaVersion.parseVersion("1.0")),
+                structure);
+
+        library.bind(newId,
             new ModelProxyReader( loader ),
             new ModelProxyWriter( loader ),
-            MixedData.class
+            loader.getClass(structure)
         );
     }
 

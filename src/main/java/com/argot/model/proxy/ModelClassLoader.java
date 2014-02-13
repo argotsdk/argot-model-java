@@ -13,12 +13,12 @@ public class ModelClassLoader
 extends ClassLoader {
 
     private final TypeLibrary _typeLibrary;
-    private final HashMap<TypeElement,Class> _classMap;
+    private final HashMap<Integer,Class> _classMap;
 
     public ModelClassLoader(final TypeLibrary library )
     {
         _typeLibrary = library;
-        _classMap = new HashMap<TypeElement,Class>();
+        _classMap = new HashMap<Integer,Class>();
     }
 
     public Class defineClass(final String name, final byte[] b) {
@@ -28,19 +28,18 @@ extends ClassLoader {
     public Class getClass(final TypeElement element)
     throws TypeException
     {
-        final Class clss = _classMap.get(element);
+        final MetaExpression expression = (MetaExpression) element;
+        final Class clss = _classMap.get(expression.getMemberTypeId());
         if (clss != null) {
             return clss;
         }
 
-        final MetaExpression expression = (MetaExpression) element;
         final MetaName name = _typeLibrary.getName(expression.getMemberTypeId());
         final String typeName = element.getTypeName();
-        System.out.println("typeName = " + typeName + " - " + element.getTypeId() + " " + element.getTypeDefinition());
 
         final byte[] classData = SequenceCreator.getBytecode(_typeLibrary, element, ModelObject.class);
         final Class newClss = defineClass(name.getFullName(),classData,0,classData.length);
-        _classMap.put(element, clss );
+        _classMap.put(expression.getMemberTypeId(), newClss );
         return newClss;
     }
 }
