@@ -13,7 +13,6 @@ import com.argot.TypeMapperCore;
 import com.argot.TypeMapperDynamic;
 import com.argot.TypeMapperError;
 import com.argot.TypeOutputStream;
-import com.argot.data.MixedData;
 import com.argot.model.data.SequenceData;
 
 public class ModelDataTest
