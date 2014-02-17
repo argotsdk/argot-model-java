@@ -65,11 +65,11 @@ public class SequenceCreator implements Opcodes {
 
             final String tagName = tag.getDescription();
 
-            cw.visitMethod(ACC_PUBLIC | ACC_ABSTRACT, getSetterName(tagName), Type.getMethodDescriptor(Type.VOID_TYPE,Type.getType(clss)), null, null)
+            cw.visitMethod(ACC_PUBLIC | ACC_ABSTRACT, getSetterName(tagName), Type.getMethodDescriptor(Type.VOID_TYPE, new Type[] { Type.getType(clss)}), null, null)
             .visitAnnotation("L"+Type.getType(ModelAnnotation.class).getInternalName()+";", true).visit("value", x);
-            cw.visitMethod(ACC_PUBLIC | ACC_ABSTRACT, getGetterName(tagName), Type.getMethodDescriptor(Type.getType(clss)), null, null)
+            cw.visitMethod(ACC_PUBLIC | ACC_ABSTRACT, getGetterName(tagName), Type.getMethodDescriptor(Type.getType(clss), new Type[] {}), null, null)
             .visitAnnotation("L" + Type.getType(ModelAnnotation.class).getInternalName()+";", true).visit("value", x);
-            cw.visitMethod(ACC_PUBLIC | ACC_ABSTRACT, getHasChangedName(tagName), Type.getMethodDescriptor(Type.BOOLEAN_TYPE), null, null)
+            cw.visitMethod(ACC_PUBLIC | ACC_ABSTRACT, getHasChangedName(tagName), Type.getMethodDescriptor(Type.BOOLEAN_TYPE, new Type[] {}), null, null)
             .visitAnnotation("L"+Type.getType(ModelAnnotation.class).getInternalName()+";", true).visit("value", x);
 
         }
