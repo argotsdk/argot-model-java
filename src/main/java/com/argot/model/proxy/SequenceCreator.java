@@ -42,7 +42,7 @@ public class SequenceCreator implements Opcodes {
 
         // Generate the class header.
         cw.visit(V1_6, ACC_PUBLIC + ACC_ABSTRACT + ACC_INTERFACE,
-                name.getFullName(), null, "java/lang/Object", interfaces);
+                name.getFullName().replace('.', '/'), null, "java/lang/Object", interfaces);
 
         for (int x=0; x<sequence.size(); x++) {
             final TypeElement attrElement = sequence.getElement(x);
