@@ -106,7 +106,7 @@ public class SequenceProxy implements InvocationHandler {
             final TypeReader reader = super.getExpressionReader(map, resolver, element);
             final Class clss = _classLoader.getClass(element);
 
-            return new SequenceProxyReader(reader, element, _classLoader, new Class[] { clss } );
+            return new SequenceProxyReader(reader, element, clss.getClassLoader(), new Class[] { clss } );
         }
     }
 
