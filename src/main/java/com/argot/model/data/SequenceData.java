@@ -2,7 +2,6 @@ package com.argot.model.data;
 
 import java.io.IOException;
 
-import com.argot.TypeConstructor;
 import com.argot.TypeElement;
 import com.argot.TypeException;
 import com.argot.TypeInputStream;
@@ -49,17 +48,6 @@ implements ModelObject
 	public Object[] getSequenceData()
 	{
 		return _data;
-	}
-
-	public static class SequenceDataConstructor
-	implements TypeConstructor
-	{
-		@Override
-        public Object construct(final TypeElement sequence, final Object[] parameters)
-		throws TypeException
-		{
-			return new SequenceData(sequence,parameters);
-		}
 	}
 
 	public static class SequenceDataExpressionReader

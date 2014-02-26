@@ -10,7 +10,6 @@ import java.security.InvalidParameterException;
 import com.argot.TypeElement;
 import com.argot.TypeException;
 import com.argot.TypeInputStream;
-import com.argot.TypeLibrary;
 import com.argot.TypeMap;
 import com.argot.TypeOutputStream;
 import com.argot.TypeReader;
@@ -129,11 +128,8 @@ public class SequenceProxy implements InvocationHandler {
         public Object read(final TypeInputStream in)
         throws TypeException, IOException
         {
-            final TypeLibrary typeLibrary = in.getTypeMap().getLibrary();
             final SequenceProxy handler = new SequenceProxy( _structure, _reader.read(in) );
-            final Object o = Proxy.newProxyInstance(_classLoader, _interfaces, handler );
-
-            return o;
+            return Proxy.newProxyInstance(_classLoader, _interfaces, handler );
         }
 
     }
