@@ -7,6 +7,7 @@ import com.argot.TypeException;
 import com.argot.TypeLibrary;
 import com.argot.meta.MetaSequence;
 import com.argot.meta.MetaTag;
+import com.argot.model.ModelFactory;
 import com.argot.model.TagData;
 import com.argot.model.data.SequenceData;
 
@@ -17,7 +18,9 @@ import com.argot.model.data.SequenceData;
  * @author davidryan
  *
  */
-public class ModelProxyFactory {
+public class ModelProxyFactory
+implements ModelFactory
+{
 
     private final TypeLibrary _library;
     private final MetaSequence _structure;
@@ -37,6 +40,7 @@ public class ModelProxyFactory {
         _clss = _library.getClass(id);
     }
 
+    @Override
     public Object newInstance()
     throws TypeException
     {

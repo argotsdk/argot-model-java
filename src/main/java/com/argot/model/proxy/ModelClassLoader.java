@@ -56,7 +56,17 @@ public class ModelClassLoader
         }
 
         final MetaName name = _typeLibrary.getName(expression.getMemberTypeId());
-        final String typeName = element.getTypeName();
+
+        // If the class is already created or exists assume it's the right one and bind to it.
+        try {
+            final Class alreadyCreatedClss = Class.forName(name.getFullName());
+            _classMap.put(expression.getMemberTypeId(), alreadyCreatedClss );
+            return alreadyCreatedClss;
+        } catch (final ClassNotFoundException e) {
+            // ignore
+        }
+
+        //final String typeName = element.getTypeName();
 
         final byte[] classData = SequenceCreator.getBytecode(_typeLibrary, element, ModelObject.class);
         final Class newClss = defineClass(classData);
