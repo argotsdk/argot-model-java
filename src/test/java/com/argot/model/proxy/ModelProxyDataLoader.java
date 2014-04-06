@@ -4,7 +4,7 @@ import com.argot.TypeElement;
 import com.argot.TypeException;
 import com.argot.TypeLibrary;
 import com.argot.TypeLibraryLoader;
-import com.argot.data.MixedData;
+import com.argot.model.MixedData;
 import com.argot.meta.DictionaryDefinition;
 import com.argot.meta.DictionaryName;
 import com.argot.meta.MetaExpression;

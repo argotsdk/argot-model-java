@@ -21,7 +21,7 @@ import com.argot.TypeMapperDynamic;
 import com.argot.TypeMapperError;
 import com.argot.TypeOutputStream;
 import com.argot.compiler.ArgotCompilerLoader;
-import com.argot.data.MixedData;
+import com.argot.model.MixedData;
 
 public class ModelProxyFactoryTest
 extends TestCase

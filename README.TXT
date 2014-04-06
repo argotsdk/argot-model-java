@@ -1,1 +1,0 @@
-Argot Model provides a tree like structure to store Argot data.

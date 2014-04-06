@@ -22,7 +22,7 @@ import com.argot.TypeMapperCore;
 import com.argot.TypeMapperDynamic;
 import com.argot.TypeMapperError;
 import com.argot.TypeOutputStream;
-import com.argot.data.MixedData;
+import com.argot.model.MixedData;
 
 public class ModelProxyTest
 extends TestCase
@@ -86,7 +86,7 @@ extends TestCase
         printByteData(msgData);
     }
 
-    private void printByteData( final byte[] data ) {
+    public static void printByteData( final byte[] data ) {
 
         int count=0;
         //System.out.println("Core Size: " + data.length);
